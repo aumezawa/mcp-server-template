@@ -1,0 +1,56 @@
+[project]
+name = "mcp-server-template"
+version = "1.0.0"
+description = "A template for MCP servers"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "fastapi[standard]>=0.131.0",
+    "fastmcp>=2.13.3",
+    "loguru>=0.7.3",
+    "pydantic>=2.12.5",
+    "python-dotenv>=1.2.1",
+]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.19.1",
+    "ruff>=0.14.10",
+]
+
+[tool.mypy]
+strict = true
+
+[tool.ruff]
+exclude = [
+    "__pycache__",
+    ".mypy_cache",
+    ".venv",
+    ".git",
+]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    # [Reference](https://ruff.rs/docs/rules/)
+    "C901", # complex-structure
+    "D203", # incorrect-blank-line-before-class
+    "D212", # multi-line-summary-first-line
+    "D400", # missing-trailing-period
+    "D413", # missing-blank-line-after-last-section
+    "D415", # missing-terminal-punctuation
+    "BLE001",   # do-not-use-raw-exceptions
+    "PLR091",   # too-many-arguments
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.ruff.lint.isort]
+known-first-party = ["app"]
