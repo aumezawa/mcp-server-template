@@ -1,6 +1,6 @@
 [project]
 name = "mcp-server-template"
-version = "1.0.0"
+version = "1.1.0"
 description = "A template for MCP servers"
 readme = "README.md"
 requires-python = ">=3.14"
@@ -53,4 +53,4 @@ quote-style = "double"
 indent-style = "space"
 
 [tool.ruff.lint.isort]
-known-first-party = ["app"]
+known-first-party = ["src"]
