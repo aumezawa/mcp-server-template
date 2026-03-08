@@ -1,7 +1,7 @@
 """
-mcp_request.py
+test_mcp.py
 
-version : 1.0.0
+version : 1.2.0
 author  : aumezawa
 """
 
@@ -66,32 +66,6 @@ def mcp_client(*, protocol: str = "http", address: str = "localhost", port: str 
             "jsonrpc": "2.0",
             "id": 2,
             "method": "tools/list",
-        },
-    )
-    if not res.is_success:
-        logger.error(f"Error: {res.status_code} - {res.text}")
-        return
-    logger.info(f"Response: {res.text}")
-
-    res = httpx.post(
-        url=f"{protocol}://{address}:{port}/mcp/",
-        headers={
-            "Accept": "application/json, text/event-stream",
-            "Content-Type": "application/json",
-            "mcp-session-id": res.headers.get("mcp-session-id"),
-        },
-        json={
-            "jsonrpc": "2.0",
-            "id": 3,
-            "method": "tools/call",
-            "params": {
-                "name": "get_exchange_rate",
-                "arguments": {
-                    "currency_from": "USD",
-                    "currency_to": "JPY",
-                    "currency_date": "latest",
-                },
-            },
         },
     )
     if not res.is_success:
