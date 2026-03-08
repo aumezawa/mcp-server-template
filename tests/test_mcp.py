@@ -73,6 +73,32 @@ def mcp_client(*, protocol: str = "http", address: str = "localhost", port: str 
         return
     logger.info(f"Response: {res.text}")
 
+    res = httpx.post(
+        url=f"{protocol}://{address}:{port}/mcp/",
+        headers={
+            "Accept": "application/json, text/event-stream",
+            "Content-Type": "application/json",
+            "mcp-session-id": res.headers.get("mcp-session-id"),
+        },
+        json={
+            "jsonrpc": "2.0",
+            "id": 3,
+            "method": "tools/call",
+            "params": {
+                "name": "get_exchange_rate",
+                "arguments": {
+                    "currency_from": "USD",
+                    "currency_to": "JPY",
+                    "currency_date": "latest",
+                },
+            },
+        },
+    )
+    if not res.is_success:
+        logger.error(f"Error: {res.status_code} - {res.text}")
+        return
+    logger.info(f"Response: {res.text}")
+
 
 if __name__ == "__main__":
     """Run MCP Client."""

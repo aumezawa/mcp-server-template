@@ -14,6 +14,7 @@ from fastmcp import FastMCP
 from loguru import logger
 
 from src.mcp.mcp_logger import LoggingMcpMiddleware
+from src.mcp.mcp_tools import get_exchange_rate
 
 try:
     with Path("pyproject.toml").open(mode="rb") as fp:
@@ -28,6 +29,7 @@ mcp = FastMCP(
     version=pyproject.get("project", {}).get("version") or "UNKNOW",
     auth=None,
     lifespan=None,
+    tools=[get_exchange_rate],
     strict_input_validation=True,
 )
 

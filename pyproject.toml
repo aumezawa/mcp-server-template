@@ -1,7 +1,7 @@
 [project]
-name = "mcp-server-template"
+name = "currency_rate"
 version = "1.2.0"
-description = "A template for MCP servers"
+description = "This MCP server provides the capability to exchange a currency rate to another currency."
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
